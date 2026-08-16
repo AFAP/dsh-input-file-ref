@@ -51,6 +51,12 @@ dsh-input-file-ref (node half, lib/index.js — zero external deps, Node builtin
 
 **MVP not included**: content is not inlined into messages; no file preview / syntax highlighting; no multi-select batches.
 
+## Screenshots
+
+| Fast file filtering (search + 50-row cap; more results with a longer query) | Picking backfills `@relative/path ` (leading `@` kept + trailing space) |
+|:---:|:---:|
+| ![Fast file filtering](screenshot/picker-filter.png) | ![Backfill on pick](screenshot/picker-backfill.png) |
+
 ## 3. Directory layout
 
 ```

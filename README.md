@@ -51,6 +51,12 @@ dsh-input-file-ref (node half, lib/index.js — 零外部依赖，仅 node 内�
 
 **MVP 暂不支持**：不内联文件内容到消息；不做文件预览/语法高亮；不做多选批量。
 
+## 效果预览
+
+| 快速筛选文件（搜索 + 50 条上限，输入更多显示更多） | 选中文件回填（`@相对路径 ` 保留 `@` + 末尾空格） |
+|:---:|:---:|
+| ![快速筛选文件](screenshot/picker-filter.png) | ![选中文件回填](screenshot/picker-backfill.png) |
+
 ## 3. 目录结构
 
 ```
