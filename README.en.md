@@ -4,8 +4,8 @@
   <a href="README.md">中文</a> · <b>English</b>
 </div>
 
-> **Type `@` in the composer to list files under the session's working directory (like Claude Code / Cursor), pick one, and the model can read it.**
-> Adds a **"file"** `@` reference source to the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web GUI input, coexisting with the built-in skill / subagent references **in the same menu**.
+> **Type `@` in the composer to open a file picker under the session's working directory — like Kimicode / Claude Code / Cursor — and pick a file so `@relative/path ` is backfilled and the model can read it.**
+> Adds a **"file"** `@` reference source to the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web GUI input: a **searchable, drill-down, full-width** picker panel; the backfill keeps the leading `@` with a trailing space (which stops `@` from re-triggering).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 

@@ -4,8 +4,8 @@
   <b>中文</b> · <a href="README.en.md">English</a>
 </div>
 
-> **在会话输入框输入 `@`，像 Claude Code / Cursor 一样弹出当前工作目录的文件列表，选中后插入文件引用，模型即可读取该文件内容。**
-> 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web GUI 输入框新增一个"文件"`@` 引用源，与自带的技能 / 子代理引用**共存于同一菜单**。
+> **在会话输入框输入 `@`，像 Kimicode / Claude Code / Cursor 一样弹出当前工作目录的文件选择面板，选中后把 `@相对路径 ` 回填进输入框，模型即可按路径读取该文件内容。**
+> 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web GUI 输入框新增一个"文件"`@` 引用源：**可搜索、可逐级下钻、与输入框同宽**的选择面板，回填保留 `@` 并自带末尾空格（自动停止再次触发选择）。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
