@@ -1,0 +1,44 @@
+{
+  "name": "dsh-input-file-ref",
+  "version": "0.1.0",
+  "description": "File reference picker for the DeepSeek Harness web GUI: typing '@' in a session with a working directory lists the files under it and inserts a <file>relative/path</file> reference the model can read.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-input-trigger"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AFAP/dsh-input-file-ref.git"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "file",
+    "reference",
+    "picker",
+    "@",
+    "plugin"
+  ],
+  "license": "MIT"
+}

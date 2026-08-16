@@ -1,0 +1,15 @@
+# dsh-input-file-ref bundle patch: adds the input-file-ref plugin row to the
+# web profile composition. Applied as a bundle layer (dsh.bundle.patch) after
+# dsh-base and dsh-web-app, so the row lands beside the other dsh.client rows.
+#
+# The host half injects webRuntime to sample the deployment's browser-trust
+# fence authorities (the same expression the connection row uses), which the
+# /api/input-file-list handler applies to its own requests. The optional
+# `ignore` list controls which directory basenames are skipped during the
+# walk (defaults are built into lib/index.js).
+- insert:
+    - id: input-file-ref
+      name: dsh-input-file-ref
+      inject: [webRuntime]
+      config:
+        trustedHosts: !!js ctx.webRuntime.trustedHosts
