@@ -29,7 +29,7 @@ dsh-input-file-ref (node half, lib/index.js — zero external deps, Node builtin
   File picker panel (client half, conversation.input.overlay) ── search bar on top + drill-down
     ├─ same width as the composer; only 50 rows by default, more with a longer query
     ├─ folders can be entered level by level (.git/node_modules/target included; search excludes them)
-    └─ pick → relative full path is backfilled into the input (spaced) ──send──► the model reads that file
+    └─ pick → keeps "@" and backfills the full relative path (one trailing space) ──send──► the model reads that file
 ```
 
 **Read-only**: this plugin modifies no files. The host half only **reads** session-log headers and filesystem metadata (path/size/mtime) — it never reads, writes, or deletes any file contents.
@@ -42,7 +42,7 @@ dsh-input-file-ref (node half, lib/index.js — zero external deps, Node builtin
 - ✅ File rows show the **relative full path**, with a **middle `…` ellipsis** when long.
 - ✅ Only **50 rows** shown by default; typing longer queries gradually raises the limit to 100 / 200 / 500.
 - ✅ Both keyboard (↑/↓/Enter/Esc) and mouse selection.
-- ✅ On pick, the file's **relative full path** is backfilled into the input as ordinary text (one space before and after), directly editable/removable; you can reference several files in a row.
+- ✅ On pick, the code keeps the **leading `@`** and backfills the file's **relative full path** into the input as ordinary text with **one trailing space** (e.g. `@src/main.ts `), directly editable/removable; the trailing space stops `@` from re-triggering, so you can keep typing or reference several files in a row.
 - ✅ On send the message carries the referenced relative paths; the model reads them with its own fs tool (sandbox rooted at the session cwd).
 - ✅ A session without a working directory shows a hint in the panel instead of crashing.
 - ✅ Coexists with the existing `@` skill / subagent references.
@@ -105,9 +105,9 @@ Create or open a session that already has a working directory → type `@` in th
 3. **At the top level = browse the current directory**: files and subfolders appear; click a folder to drill in level by level (`.git`, `node_modules`, `target` etc. are shown and browsable too).
 4. **Search bar on top** (or keep typing after `@` in the composer): type to recursively search the whole cwd; only 50 rows are shown by default — **type more characters to reveal more** (limit rises to 100 / 200 / 500).
 5. **Go back up**: when inside a folder, the list starts with "↑ Parent directory"; Backspace returns too.
-6. Use ↑/↓ + Enter (or click a `📄` row) to select a file → the file's **relative full path** is backfilled into the input as plain text (one space before and after), e.g. ` src/main.ts `.
+6. Use ↑/↓ + Enter (or click a `📄` row) to select a file → the code **keeps the `@`** and backfills the file's **relative full path** as plain text with **one trailing space**, e.g. `@src/main.ts `.
 7. On send the message carries the referenced relative paths; the model reads them with its fs tool.
-8. To remove/modify: the backfilled text is ordinary text — edit or delete it like any other text; multiple files can be referenced in a row (each spaced).
+8. To remove/modify: the backfilled text is ordinary text — edit or delete it like any other text; the trailing space stops `@` from re-triggering; reference several files by typing a space + `@` to reopen the picker each time.
 
 For a session without a working directory, typing `@` shows a "no working directory" hint instead of crashing. Searching never surfaces files under `.git`, `node_modules`, `target` etc. (but you can drill into them in browse mode).
 
@@ -189,7 +189,7 @@ Session without a working directory:
 ## 10. FAQ
 
 - **Q: Does the plugin read file contents?** A: No. The host only lists metadata; the picked relative path is backfilled as text, and the model reads contents with **its own fs tool** once it receives it (sandbox rooted at the session cwd).
-- **Q: Can I reference multiple files?** A: Yes — reopen the `@` panel for each; every pick backfills one relative path (spaced), so you can reference several files in one message.
+- **Q: Can I reference multiple files?** A: Yes — reopen the `@` panel for each (type a space + `@`); every pick backfills one `@`-prefixed relative path with a trailing space, so you can reference several files in one message.
 - **Q: Don't certain files show up when searching?** A: `.git`, `node_modules`, `target` and other ignored directories are excluded from search results (for performance). Use browse mode — click the folder and drill in level by level — to find and select files inside them.
 
 ## 11. Development & build
